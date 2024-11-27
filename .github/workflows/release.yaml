@@ -23,7 +23,6 @@ jobs:
 
       - name: Print
         run: |
-           echo ${{VERSION}}
            env
 
       - name: Create Release
