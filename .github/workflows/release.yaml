@@ -59,8 +59,10 @@ jobs:
           project_path: "."
           release_name: "v0.8"
           goversion: "https://go.dev/dl/go1.21.9.linux-amd64.tar.gz"
-          binary_name: "test-binary"
-          extra_files: LICENSE README.md
+          #binary_name: "test-binary"
+          #extra_files: LICENSE README.md
+          asset_name: "main-${{ matrix.goos }}-${{ matrix.goarch }}"
+          compress_assets: OFF
 
       #- name: Create Release
         #uses: softprops/action-gh-release@v2
