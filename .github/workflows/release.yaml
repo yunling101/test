@@ -58,7 +58,7 @@ jobs:
            tar --version
            zip -v
 
-      -name: Zip the Build
+      - name: Zip the Build
        run: zip -r x.zip . 
 
       - name: Go Binary
