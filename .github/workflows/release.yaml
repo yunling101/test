@@ -13,19 +13,15 @@ defaults:
 
 permissions:
   contents: write
+  packages: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        goos: [linux, windows, darwin]
-        goarch: ["386", amd64, arm64]
-        exclude:
-          - goarch: "386"
-            goos: darwin
-          - goarch: arm64
-            goos: windows
+        goos: [linux, darwin]
+        goarch: [amd64, arm64]
     steps:
       - name: Check Out
         uses: actions/checkout@v4
