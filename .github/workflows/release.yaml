@@ -52,8 +52,14 @@ jobs:
       - name: Print
         run: |
            #echo "The version is ${{ env.version }}"
-           echo "${{steps.generate_tag.outputs.version}}"
+           echo "${{ steps.generate_tag.outputs.version }}"
+           echo "${{ github.event.release.tag_name }}"
            env
+           tar --version
+           zip -v
+
+      -name: Zip the Build
+       run: zip -r x.zip . 
 
       - name: Go Binary
         uses: wangyoucao577/go-release-action@v1
@@ -66,6 +72,7 @@ jobs:
           goversion: "https://go.dev/dl/go1.21.9.linux-amd64.tar.gz"
           #binary_name: "test-binary"
           #extra_files: LICENSE README.md
+          extra_files: x.zip
           asset_name: "main-${{steps.get_tag.outputs.RELEASE_VERSION}}-${{ matrix.goos }}-${{ matrix.goarch }}"
           compress_assets: OFF
 
