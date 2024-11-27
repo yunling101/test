@@ -2,24 +2,24 @@ name: Release
 
 on:
   push:
-    #tags:
-    #  - 'v*'
-    branches:
-      - master
+    tags:
+      - 'v*'
+    #branches:
+    #  - master
 
-defaults:
-  run:
-    shell: bash
+#defaults:
+#  run:
+#    shell: bash
 
 permissions:
   contents: write
-  packages: write
+#  packages: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
+    #strategy:
+    #  matrix:
         #goos: [linux, windows, darwin]
         #goarch: ["386", amd64, arm64]
         #exclude:
@@ -27,8 +27,8 @@ jobs:
         #    goos: darwin
         #  - goarch: arm64
         #    goos: windows
-        goos: [darwin]
-        goarch: [amd64]
+    #    goos: [darwin]
+    #    goarch: [amd64]
     steps:
       - name: Check Out
         uses: actions/checkout@v4
@@ -66,29 +66,29 @@ jobs:
            zip -v
 
       - name: Zip the Build
-        run: zip -r x.zip . 
+        run: zip -r x.zip ./deploy
 
-      - name: Go Binary
-        uses: wangyoucao577/go-release-action@v1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          goos: ${{ matrix.goos }}
-          goarch: ${{ matrix.goarch }}
-          project_path: "."
-          release_name: "v0.8"
-          goversion: "https://go.dev/dl/go1.21.9.linux-amd64.tar.gz"
+      #- name: Go Binary
+      #  uses: wangyoucao577/go-release-action@v1
+      #  with:
+      #    github_token: ${{ secrets.GITHUB_TOKEN }}
+      #    goos: ${{ matrix.goos }}
+      #    goarch: ${{ matrix.goarch }}
+      #    project_path: "."
+      #    release_name: "v0.8"
+      #    goversion: "https://go.dev/dl/go1.21.9.linux-amd64.tar.gz"
           #binary_name: "test-binary"
           #extra_files: LICENSE README.md
-          extra_files: x.zip
-          asset_name: "main-${{steps.get_tag.outputs.RELEASE_VERSION}}-${{ matrix.goos }}-${{ matrix.goarch }}"
-          overwrite: TRUE
-          compress_assets: OFF
+      #    asset_name: "main-${{steps.get_tag.outputs.RELEASE_VERSION}}-${{ matrix.goos }}-${{ matrix.goarch }}"
+      #    overwrite: TRUE
+      #    compress_assets: OFF
 
-      #- name: Create Release
-        #uses: softprops/action-gh-release@v2
-        #if: startsWith(github.ref, 'refs/tags/')
-        #with:
-        #  files: |
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+             x.zip
         #    Release.txt
         #    LICENSE
         #with:
