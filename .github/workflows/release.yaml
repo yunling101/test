@@ -23,11 +23,13 @@ jobs:
 
       - name: Get Version
         id: generate_tag
-        run: |
-          version=$(cat ./VERSION)
-          echo "VERSION=$version"
-	  #echo "version=$version" >> $GITHUB_ENV
-          echo "version=$version" >> $GITHUB_OUTPUT
+        run: echo "version=$(cat ./VERSION)" >> $GITHUB_OUTPUT
+
+        #run: |
+        #  version=$(cat ./VERSION)
+        #  echo "VERSION=$version"
+	#  #echo "version=$version" >> $GITHUB_ENV
+        #  echo "version=$version" >> $GITHUB_OUTPUT
      
       - name: Print
         run: |
