@@ -22,24 +22,26 @@ jobs:
           fetch-depth: 0
 
       - name: Get Version
+        id: generate_tag
         run: |
           version=$(cat ./VERSION)
           echo "VERSION=$version"
-          echo "version=$version" >> $GITHUB_ENV
+	  #echo "version=$version" >> $GITHUB_ENV
+          echo "version=$version" >> $GITHUB_OUTPUT
      
       - name: Print
         run: |
-           echo "The version is ${{ env.version }}"
+           #echo "The version is ${{ env.version }}"
+           echo "${{steps.generate_tag.outputs.version}}"
            env
 
       - name: Create Release
-        id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ env.version }}
-          release_name: Release ${{ env.version }}
+          #tag_name: ${{ env.version }}
+          release_name: Release ${{ steps.generate_tag.outputs.version }}
           body: |
             Changes in this Release
             - First Change
