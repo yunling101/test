@@ -32,6 +32,11 @@ jobs:
         id: generate_tag
         run: echo "version=$(cat ./VERSION)" >> $GITHUB_OUTPUT
 
+      - name: Get Tag
+        id: get_tag
+        # echo "TAG_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+
         #run: |
         #  version=$(cat ./VERSION)
         #  echo "VERSION=$version"
@@ -61,7 +66,7 @@ jobs:
           goversion: "https://go.dev/dl/go1.21.9.linux-amd64.tar.gz"
           #binary_name: "test-binary"
           #extra_files: LICENSE README.md
-          asset_name: "main-${{ matrix.goos }}-${{ matrix.goarch }}"
+          asset_name: "main-${{steps.get_tag.outputs.RELEASE_VERSION}}-${{ matrix.goos }}-${{ matrix.goarch }}"
           compress_assets: OFF
 
       #- name: Create Release
