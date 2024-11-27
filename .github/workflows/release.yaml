@@ -28,7 +28,7 @@ jobs:
         #run: |
         #  version=$(cat ./VERSION)
         #  echo "VERSION=$version"
-	#  #echo "version=$version" >> $GITHUB_ENV
+	#  echo "version=$version" >> $GITHUB_ENV
         #  echo "version=$version" >> $GITHUB_OUTPUT
      
       - name: Print
