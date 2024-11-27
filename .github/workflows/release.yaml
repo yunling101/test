@@ -19,11 +19,11 @@ jobs:
 
       - name: Get Version
         run: |
-           VERSION=$(cat ./VERSION)
+           export VERSION=$(cat ./VERSION)
 
       - name: Print
         run: |
-           echo ${VERSION}
+           echo ${{VERSION}}
            env
 
       - name: Create Release
