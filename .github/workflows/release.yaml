@@ -59,7 +59,7 @@ jobs:
            zip -v
 
       - name: Zip the Build
-       run: zip -r x.zip . 
+        run: zip -r x.zip . 
 
       - name: Go Binary
         uses: wangyoucao577/go-release-action@v1
