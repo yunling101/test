@@ -100,7 +100,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           version: latest
-           distribution: goreleaser
+          distribution: goreleaser
           args: release --rm-dist --clean 
 
       #- name: Create Release
