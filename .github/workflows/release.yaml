@@ -50,11 +50,11 @@ jobs:
         #  echo "version=$version" >> $GITHUB_ENV
         #  echo "version=$version" >> $GITHUB_OUTPUT
      
-      - name: Build
-        run: echo ${{ github.sha }} > Release.txt
+      #- name: Build
+      #  run: echo ${{ github.sha }} > Release.txt
 
-      - name: Test
-        run: cat Release.txt
+      #- name: Test
+      #  run: cat Release.txt
 
       - name: Print
         run: |
@@ -91,7 +91,7 @@ jobs:
           cache: true
       - run: go version
       - run: go run main.go
-      - run: go build -o main
+      #- run: go build -o main
       - run: ls -lah
 
       - name: Run GoReleaser
