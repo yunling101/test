@@ -2,11 +2,11 @@ name: Release
 
 on:
   push:
-    tags:
-      - '*'
+    #tags:
+    #  - '*'
     #  - 'v*'
-    #branches:
-    #  - master
+    branches:
+      - master
 
 #defaults:
 #  run:
@@ -98,14 +98,14 @@ jobs:
       #- run: go build -o main
       - run: ls -lah
 
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v6
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          version: latest
-          distribution: goreleaser
-          args: release --clean 
+      #- name: Run GoReleaser
+      #  uses: goreleaser/goreleaser-action@v6
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #  with:
+      #    version: latest
+      #    distribution: goreleaser
+      #    args: release --clean 
 
       #- name: Create Release
       #  uses: softprops/action-gh-release@v2
