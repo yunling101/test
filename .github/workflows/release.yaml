@@ -57,6 +57,9 @@ jobs:
       #- name: Test
       #  run: cat Release.txt
 
+      - name: Docker
+        run: docker version && docker buildx ls
+
       - name: Print
         run: |
            #echo "The version is ${{ env.version }}"
